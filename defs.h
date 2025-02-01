@@ -6,6 +6,8 @@ typedef unsigned long long U64;
 #define NAME "vice 1.0"
 #define BRD_SQ_NUM 120
 
+#define MAXGAMEMOVES 2048
+
 enum {
     EMPTY,
     wP,
@@ -69,6 +71,16 @@ enum {
 };
 
 typedef struct {
+
+    int move;
+    int castlePerm;
+    int enPas;
+    int fiftyMove;
+    U64 posKey;
+
+} S_UNDO;
+
+typedef struct {
     int pieces[BRD_SQ_NUM];
     U64 pawns[3];
 
@@ -89,6 +101,8 @@ typedef struct {
     int bigPce[3];
     int majPce[3];
     int minPce[3];
+
+    S_UNDO history[MAXGAMEMOVES];
 
 } S_BOARD;
 
